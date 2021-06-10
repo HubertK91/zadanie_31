@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pogoda</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+<div style="margin: 100px auto; max-width: 1080px; width: 100%">
+
+    <h1>Informacje o pogodzie</h1>
+    <form method="post" th:action="|/?q=${weather.name}&APPID=175810261b050aefd1530e1398b9ac9d|" th:object="${weather}">
+        <label for="cityName" class="form-label">Podaj nazwę miasta</label>
+        <input th:field="*{name}" id = "cityName" type="text" placeholder="Nazwa miasta">
+        <input type="submit" value="Potwierdź">
+    </form>
+    <h2 th:each="data: ${weatherData}"  th:text="|Dane o pogodzie w mieście ${data.name}|"></h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>Temperatura</td>
+            <td>Odczuwalna temperatura</td>
+            <td>Temperatura minimalna</td>
+            <td>Temperatura maksymalna</td>
+            <td>Ciśnienie atmosferyczne</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="data: ${weatherData}">
+            <td th:text="${data.temp}"></td>
+            <td th:text="${data.feels_like}"></td>
+            <td th:text="${data.temp_min}"></td>
+            <td th:text="${data.temp_max}"></td>
+            <td th:text="${data.pressure}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
