@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Weather {
-    private WeatherMain main;
-    private String name;
+public class WeatherMain {
+    private Double temp;
+    private Double temp_min;
+    private Double temp_max;
+    private Double pressure;
 }

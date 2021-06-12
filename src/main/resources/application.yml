@@ -1,0 +1,3 @@
+app:
+  myserviceWeatherUrl: https://api.openweathermap.org/data/2.5/weather
+  APPID: 175810261b050aefd1530e1398b9ac9d

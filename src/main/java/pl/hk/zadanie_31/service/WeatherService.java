@@ -14,9 +14,8 @@ public class WeatherService {
         this.weatherClient = weatherClient;
     }
 
-    public Weather getWeatherInfo(String q, String appId){
-        WeatherDto weatherDto = weatherClient.getWeather(q, appId);
-        return new Weather(weatherDto.getName(), weatherDto.getTemp(), weatherDto.getFeels_like(), weatherDto.getTemp_min(),
-                weatherDto.getTemp_max(), weatherDto.getPressure());
+    public Weather getWeatherInfo(String city){
+        WeatherDto weatherDto = weatherClient.getWeather(city);
+        return new Weather(weatherDto.getMain(),weatherDto.getName());
     }
 }

@@ -12,7 +12,7 @@ public class ClientConfig {
 
     @Bean
     @Autowired
-    public RestTemplate weatherRestTemplate(@Value("${https://api.openweathermap.org/data/2.5/weather}") String weatherHostUrl){
+    public RestTemplate weatherRestTemplate(@Value("${app.myserviceWeatherUrl}") String weatherHostUrl){
         return new RestTemplateBuilder()
                 .rootUri(weatherHostUrl)
                 .additionalInterceptors(new LoggingInterceptor())

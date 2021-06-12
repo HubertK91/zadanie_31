@@ -10,33 +10,32 @@
 <div style="margin: 100px auto; max-width: 1080px; width: 100%">
 
     <h1>Informacje o pogodzie</h1>
-    <form method="post" th:action="|/?q=${weather.name}&APPID=175810261b050aefd1530e1398b9ac9d|" th:object="${weather}">
+    <form method="post" th:action="@{/}" th:object="${weatherData}">
         <label for="cityName" class="form-label">Podaj nazwę miasta</label>
-        <input th:field="*{name}" id = "cityName" type="text" placeholder="Nazwa miasta">
+        <input th:field="*{name}" id="cityName" type="text" placeholder="Nazwa miasta">
         <input type="submit" value="Potwierdź">
     </form>
-    <h2 th:each="data: ${weatherData}"  th:text="|Dane o pogodzie w mieście ${data.name}|"></h2>
-    <table class="table">
-        <thead>
-        <tr>
-            <td>Temperatura</td>
-            <td>Odczuwalna temperatura</td>
-            <td>Temperatura minimalna</td>
-            <td>Temperatura maksymalna</td>
-            <td>Ciśnienie atmosferyczne</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="data: ${weatherData}">
-            <td th:text="${data.temp}"></td>
-            <td th:text="${data.feels_like}"></td>
-            <td th:text="${data.temp_min}"></td>
-            <td th:text="${data.temp_max}"></td>
-            <td th:text="${data.pressure}"></td>
-        </tr>
-
-        </tbody>
-    </table>
+    <div th:if="${weatherData.main} != null">
+        <h2 th:text="|Dane o pogodzie w mieście ${weatherData.name}|"></h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>Temperatura</td>
+                <td>Temperatura minimalna</td>
+                <td>Temperatura maksymalna</td>
+                <td>Ciśnienie atmosferyczne</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="|${weatherData.main.temp} °C|"></td>
+                <td th:text="|${weatherData.main.temp_min} °C|"></td>
+                <td th:text="|${weatherData.main.temp_max} °C|"></td>
+                <td th:text="|${weatherData.main.pressure} hPa|"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 </body>
